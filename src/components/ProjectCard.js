@@ -26,7 +26,7 @@ function ProjectCard(props) {
 
     return (
         <Container size={470} px={0}>
-            <Card shadow="xl" p="lg" radius="md" size={300}>
+            <Card shadow="xl" p="xl" radius="xl" size={300}>
                 <Card.Section>
                     <Image
                     component="a"
@@ -34,17 +34,18 @@ function ProjectCard(props) {
                     onClick={() => setOpened(true)}
                     src={image}
                     height={100}
+                    style={{ cursor: 'pointer'}}
                     />
                 </Card.Section>
-                <Card.Section p="md">
-                    <Text weight={700} variant="link"  size="sm">{title}</Text>
+                <Card.Section p="lg">
+                    <Text weight={700} variant="link" size="sm">{title}</Text>
                     <Text color="dimmed" size="sm">{description}</Text>
                     <Group position="apart">
                         <Group position="left">
                             <Badge mt="xs" variant="outline" color={badgeColour}>{language}</Badge>
                             <Badge mt="xs" variant="outline" color="gray">{type}</Badge>
                         </Group>
-                        <Button variant="outline" color={badgeColour} onClick={() => setOpened(true)}>Learn More</Button>
+                        <Button radius="xl" variant="outline" color={badgeColour} onClick={() => setOpened(true)}>Learn More</Button>
                     </Group>
                 </Card.Section>
             </Card>

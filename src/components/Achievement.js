@@ -1,4 +1,4 @@
-import { Image, Text, Container, Button, Group } from '@mantine/core'
+import { Image, Text, Container, Button, Group, Box } from '@mantine/core'
 function Award(props){
     const title = props.title
     const image = props.image
@@ -9,7 +9,7 @@ function Award(props){
 
     return(
         <>
-        <Container shadow="xl" p="lg" radius="md" size="xl">
+        <Container shadow="xl" p="lg" radius="md" size="sm" m="sm">
             <Image
             src={image}
             width={100}
@@ -18,7 +18,7 @@ function Award(props){
             />
             <Text align="center">{title}</Text>
             <Group position="center">
-            <Button align="center" mt="sm" variant="outline" color="yellow">View</Button>
+                <Button align="center" mt="sm" variant="outline" color="yellow" >{project}</Button>
             </Group>
         </Container>
         </>

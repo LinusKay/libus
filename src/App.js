@@ -1,4 +1,4 @@
-import { AppShell, Container, Header, Group, Title } from '@mantine/core'
+import { AppShell, Container, Header, Group, Title, Space } from '@mantine/core'
 import './App.css'
 import ProjectCard from './components/ProjectCard'
 import Achievement from './components/Achievement'
@@ -13,8 +13,9 @@ function App() {
     })}
   >
     {
+      <>
       <Container size="md" px="xs">
-        <Title order={3} align="center">Achievements</Title>
+        <Title order={2} align="center">Achievements</Title>
         <Group position="center">
           <Achievement
           image="https://libus.xyz/img/unihack.png"
@@ -39,8 +40,8 @@ function App() {
           description="https://devpost.com/software/gecko-oeh8sy"
           />
         </Group>
-
-        <Title order={3} align="center">Projects</Title>
+        <Space h="xl"/>
+        <Title order={2} align="center" mb="lg">Projects</Title>
         <Group position="center">
             <ProjectCard
             title="keepo"
@@ -123,7 +124,10 @@ function App() {
             />
             
         </Group>
+        
       </Container>
+
+      </>
     }
   </AppShell>
   );
