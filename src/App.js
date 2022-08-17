@@ -1,14 +1,20 @@
-import { AppShell, Container, Header, Group, Title, Space, Card, Avatar, Grid, Text, Button, Timeline, List } from '@mantine/core'
+import { AppShell, Container, Header, Group, Title, Space, Card, Avatar, Grid, Text, Button, Timeline, List, Stepper } from '@mantine/core'
 import { IconBrandLinkedin, IconBrandInstagram, IconBuilding, IconSchool } from '@tabler/icons'
+import { useState } from 'react';
 import './App.css'
 import ProjectCard from './components/ProjectCard'
 import Achievement from './components/Achievement'
 
 function App() {
+
+  const [active, setActive] = useState(1);
+  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
+  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+
   return (
     <AppShell
     padding="md"
-    header={<Header height={60} p="xs">{/* Header content */}</Header>}
+    // header={}
     styles={(theme) => ({
       main: { 
         backgroundColor: theme.colors.gray[0] 
@@ -17,6 +23,7 @@ function App() {
   >
     {
       <>
+      {/* <Header height={60} p="xs">Header content</Header> */}
       <Container size="md" px="xs">
         <Container size="md" px="xs" mt="md">
         {/* <Card shadow="md" p="xl" mb="xl" radius={150}> */}
@@ -38,26 +45,56 @@ function App() {
           </Grid>
         </Container>
         <Space h={50} />
-        <Title order={2} align="center" mb="lg">Employment/Education</Title>
+        <Container size="sm" px="xs" mt="md" mb="xl">
+          <Stepper active={active} onStepClick={setActive} breakpoint="sm">
+            <Stepper.Step component="a" href="#timeline" label="Employment/Education" description="Timeline of career/study milestones"/>
+            <Stepper.Step component="a" href="#achievements" label="Achievements" description="Notable awards"/>
+            <Stepper.Step component="a" href="#projects" label="Projects" description="Projects I have been involved in"/>
+            <Stepper.Completed/>
+          </Stepper>
+        </Container>
+
+        <Title order={2} align="center" mb="lg" id="timeline">Employment/Education</Title>
         <Container size="sm" px="xs">
           <Timeline active={5} bulletSize={30} lineWidth={2}>
             <Timeline.Item bullet={<IconSchool size={16} />} title="Bachelor of Information Technology">
+              <Text color="dimmed" size="sm">Topics included: Web design & development, project management, programming in PHP, Java, Python, cybersecurity, risk management, AWS web systems development, artificial intelligence, database management</Text>
               <Text size="xs" mt={4}>2020 - 2022</Text>
             </Timeline.Item>
             <Timeline.Item bullet={<IconBuilding size={16} />} title="Technical Assistant at Honeylight Consulting">
-              <Text color="dimmed" size="sm">IT technician providing level 1 & 2 support to a range of clients, through face-to-face and remote engagements.</Text>
+              <Text color="dimmed" size="sm">IT technician providing level 1 & 2 support to a range of clients, through face-to-face and remote engagements. Managed firewalls, implemented SSL certificates, provided remote troubleshooting and solution delivery, managed client reports</Text>
               <Text size="xs" mt={4}>May 2022 - Present</Text>
             </Timeline.Item>
-            <Timeline.Item bullet={<IconBuilding size={16} />} title="RMIT Information Security Collective">
+            <Timeline.Item 
+              bulletSize={25} 
+              bullet={<Avatar size={30} radius={15} src="https://media-exp1.licdn.com/dms/image/C4E0BAQEGUc6AHygkyA/company-logo_200_200/0/1614744051680?e=2147483647&v=beta&t=ixcoUQtIu1OAF5BIKyCqoEtTqN2rsLifoI7vDyUbO0E"/>}  
+              title="RMIT Information Security Collective">
+              <List size="sm" color="red">
+                <List.Item>Event coordination</List.Item>
+                <List.Item>Student engagement</List.Item>
+                <List.Item>Sponsor procurement</List.Item>
+              </List>
               <Text color="dimmed" size="sm">President</Text>
               <Text size="xs" mt={4}>Oct 2021 - Present</Text>
               <Text color="dimmed" size="sm">Secretary</Text>
               <Text size="xs" mt={4}>Nov 2020 - Oct 2021</Text>
             </Timeline.Item>
+            <Timeline.Item 
+              bulletSize={25} 
+              bullet={<Avatar size={30} src="https://avatars.githubusercontent.com/u/20478505?s=200&v=4"/>} 
+              title="RMIT Programming Club">
+              <Text color="dimmed" size="sm">Design & Media Lead</Text>
+              <Text color="dimmed" size="sm">Coordinated visual media for student club along with a team of executives and designers.</Text>
+              <Text size="xs" mt={4}>Oct 2020 - Present</Text>
+            </Timeline.Item>
             <Timeline.Item bullet={<IconSchool size={16} />} title="Diploma of Information Technology">
+              <Text color="dimmed" size="sm">Topics included project management, database management, web design, programming in PHP, Java, Windows systems administration</Text>
               <Text size="xs" mt={4}>2019 - 2020</Text>
             </Timeline.Item>
-            <Timeline.Item bullet={<IconBuilding size={16} />} title="Orders Officer at Essential Caravans">
+            <Timeline.Item 
+            bulletSize={1} 
+            bullet={<Avatar size={25} src="https://i.imgur.com/JIgGyNT.png" mt="md"/>} 
+            title="Orders Officer at Essential Caravans">
               <Text color="dimmed" size="sm" mb="xs">Handled all incoming customer orders from partner companies, communicating with representatives to ensure all customer requests are met. Ordered additional stock and filed paperwork for interstate businesses. In this time trained two employees in adjacent positions.</Text>
               <Text color="dimmed" size="sm" mb="xs">Additionally, worked as an intermediary and informal business analyst for some time, overseeing the production of an online product ordering system for use by company partners, involving:</Text> 
               <List size="sm" color="red">
@@ -74,7 +111,7 @@ function App() {
           
         <Space h={50} />
         {/* </Card> */}
-        <Title order={2} align="center">Achievements</Title>
+        <Title order={2} align="center" id="achievements">Achievements</Title>
         <Group position="center">
           <Achievement
           image="https://libus.xyz/img/unihack.png"
@@ -94,7 +131,7 @@ function App() {
           />
         </Group>
         <Space h="xl"/>
-        <Title order={2} align="center" mb="lg">Projects</Title>
+        <Title order={2} align="center" mb="lg" id="projects">Projects</Title>
         <Group position="center">
             <ProjectCard
             title="keepo"
