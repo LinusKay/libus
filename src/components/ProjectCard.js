@@ -1,5 +1,6 @@
-import { Card, Text, Image, Badge, Group, Container, Modal, Button, useMantineTheme, Grid } from '@mantine/core'
+import { Card, Text, Image, Badge, Group, Container, Modal, Button, useMantineTheme } from '@mantine/core'
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 function ProjectCard(props) {
     const title = props.title
@@ -9,16 +10,18 @@ function ProjectCard(props) {
     const language = props.language
     const link = props.link
     let type = props.type
-    let badgeColour;
-    switch(language){
-        case "Python":
-            badgeColour = "blue"; break
-        case "GMS2":
-            badgeColour = "green"; break
-        case "Java":
-            badgeColour = "orange"; break
-        default:
-            badgeColour = "gray"; break
+    let badgeColour = props.badgecolour
+    if (badgeColour == null) {
+        switch(language){
+            case "Python":
+                badgeColour = "blue"; break
+            case "GMS2":
+                badgeColour = "green"; break
+            case "Java":
+                badgeColour = "orange"; break
+            default:
+                badgeColour = "gray"; break
+        }
     }
 
     const [opened, setOpened] = useState(false);
@@ -38,7 +41,7 @@ function ProjectCard(props) {
                     />
                 </Card.Section>
                 <Card.Section p="lg">
-                    <Text weight={700} variant="link" size="sm">{title}</Text>
+                    <Text color="dimmed" weight={700} variant="link" style={{ cursor: 'pointer'}} size="sm" onClick={() => setOpened(true)}>{title}</Text>
                     <Text color="dimmed" size="sm">{description}</Text>
                     <Group position="apart">
                         <Group position="left">
@@ -58,22 +61,28 @@ function ProjectCard(props) {
                 onClose={() => setOpened(false)}
                 title={title}
                 size="xl"
+                radius="xl"
                 >
                     <Image
                     src={image}
+                    component="a" 
+                    href={link}
                     />
                     <Group position="apart" mt="sm" mb="sm">
                         <Group position="left">
                             <Badge mt="xs" color={badgeColour}>{language}</Badge>
                             <Badge mt="xs" color="gray">{type}</Badge>
                         </Group>
+                        <Button radius="xl" variant="outline" color={badgeColour} component="a" href={link}>View Project</Button>
                     </Group>
+                    
                     {
                         fulldescription == null ?
-                        <Text>{description}</Text>
+                        <Text><ReactMarkdown>{description}</ReactMarkdown></Text>
                         :
-                        <Text>{fulldescription}</Text>
+                        <Text><ReactMarkdown>{fulldescription}</ReactMarkdown></Text>
                     }
+                    <Text color="dimmed">Click the button, or the image to go to the project!</Text>
                     
             </Modal>
         </Container>

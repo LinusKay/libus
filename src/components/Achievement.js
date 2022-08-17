@@ -1,6 +1,6 @@
 import { Image, Text, Container, Button, Group, Box } from '@mantine/core'
 function Award(props){
-    const title = props.title
+    const titleArray = props.title.split(", ")
     const image = props.image
     const description = props.description
     const from = props.from
@@ -16,9 +16,21 @@ function Award(props){
             caption={from}
             align="center"
             />
-            <Text align="center">{title}</Text>
+            {
+                titleArray.map((title, index) => 
+                    <Text align="center">{title}</Text>
+                )
+            }
             <Group position="center">
-                <Button align="center" mt="sm" variant="outline" color="yellow" >{project}</Button>
+                <Button 
+                align="center" 
+                mt="sm" 
+                variant="outline" 
+                color="yellow"
+                radius="xl"
+                component="a"
+                href={link}
+                 >{project}</Button>
             </Group>
         </Container>
         </>
