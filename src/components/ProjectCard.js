@@ -11,6 +11,8 @@ function ProjectCard(props) {
     const link = props.link
     const type = props.type
     let badgeColour = props.badgecolour
+    let gradientFrom;
+    let gradientTo;
     if (badgeColour == null) {
         switch(language){
             case "Python":
@@ -22,6 +24,13 @@ function ProjectCard(props) {
             default:
                 badgeColour = "gray"; break
         }
+    }
+    else if (badgeColour == "gradient"){
+        const gradient = props.badgegradient.split(", ")
+        gradientFrom = gradient[0]
+        gradientTo = gradient[1]
+        console.log(gradientFrom)
+        console.log(gradientTo)
     }
     const images = props.images?.split(", ")
 
@@ -46,7 +55,12 @@ function ProjectCard(props) {
                     <Text color="dimmed" size="sm">{description}</Text>
                     <Group position="apart">
                         <Group position="left">
-                            <Badge mt="xs"  color={badgeColour}>{language}</Badge>
+                            {
+                                badgeColour != "gradient" ? <Badge mt="xs"  color={badgeColour}>{language}</Badge>
+                                :
+                                <Badge mt="xs" variant={badgeColour} gradient={{from: gradientFrom, to: gradientTo}}>{language}</Badge>
+                            }
+                            
                             {
                                 type == null ?
                                 ''
@@ -54,7 +68,14 @@ function ProjectCard(props) {
                                 <Badge mt="xs" color="gray">{type}</Badge>
                             }
                         </Group>
-                        <Button radius="xl" variant="outline" color={badgeColour} onClick={() => setOpened(true)}>Learn More</Button>
+                        {
+                            badgeColour != "gradient" ? 
+                            <Button radius="xl" variant="outline" color={badgeColour} onClick={() => setOpened(true)}>Learn More</Button>
+                            :
+                            <Button radius="xl" variant="outline" color={gradientTo} onClick={() => setOpened(true)}>Learn More</Button>
+                        }
+                                
+                        
                     </Group>
                 </Card.Section>
             </Card>
