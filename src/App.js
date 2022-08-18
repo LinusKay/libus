@@ -1,15 +1,17 @@
 import { AppShell, Container, Header, Group, Title, Space, Card, Avatar, Grid, Text, Button, Timeline, List, Stepper } from '@mantine/core'
 import { IconBrandLinkedin, IconBrandInstagram, IconBuilding, IconSchool } from '@tabler/icons'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css'
 import ProjectCard from './components/ProjectCard'
 import Achievement from './components/Achievement'
 
 function App() {
 
+  useEffect(() => {
+    document.title = "Linus Kay - Technical Assistant"
+  }, [])
+
   const [active, setActive] = useState(1);
-  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
-  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
   return (
     <AppShell
@@ -27,7 +29,22 @@ function App() {
       <Container size="md" px="xs">
         <Container size="md" px="xs" mt="md">
         {/* <Card shadow="md" p="xl" mb="xl" radius={150}> */}
-          <Grid>  
+        <Group position="center">
+          <Avatar 
+            size={200}
+            radius={100}
+            src="https://media-exp1.licdn.com/dms/image/C4D03AQFLBqQU2QbQWA/profile-displayphoto-shrink_800_800/0/1639607722290?e=1666224000&v=beta&t=0qK3jv59UPYnULEa2s66UK64Jh4it4sWVQQXzd1luMk"
+          />
+          </Group>
+            <Title align="center">Linus Kay</Title>
+            <Text align="center" color="dimmed" size={20} mb="md">Technical Assistant at Honeylight Consulting</Text>
+            <Text align="center" color="dimmed">IT Technician with a passion for cybersecurity. Currently Co-President of the RMIT Information Security Collective, alongside completing a Bachelor of Information Technology.</Text>
+            <Group position="center">
+            <Button radius="xl" size="md" ml={0} mr="md" mt="md" p="xs" variant="outline" component="a" href="https://linkedin.com/in/linus-kay"><IconBrandLinkedin/></Button>
+            <Button radius="xl" size="md" ml={0} mr="md" mt="md" color="orange" p="xs" variant="outline" component="a" href="https://instagram.com/linus_kay"><IconBrandInstagram/></Button>
+            </Group>
+        
+          {/* <Grid justify="center">  
             <Grid.Col span={3}>
               <Avatar 
               size={200}
@@ -42,25 +59,21 @@ function App() {
               <Button radius="xl" size="md" ml={0} mr="md" mt="md" p="xs" variant="outline" component="a" href="https://linkedin.com/in/linus-kay"><IconBrandLinkedin/></Button>
               <Button radius="xl" size="md" ml={0} mr="md" mt="md" color="orange" p="xs" variant="outline" component="a" href="https://instagram.com/linus_kay"><IconBrandInstagram/></Button>
             </Grid.Col>
-          </Grid>
+          </Grid> */}
         </Container>
         <Space h={50} />
-        <Container size="sm" px="xs" mt="md" mb="xl">
+        {/* <Container size="sm" px="xs" mt="md" mb="xl">
           <Stepper active={active} onStepClick={setActive} breakpoint="sm">
             <Stepper.Step component="a" href="#timeline" label="Employment/Education" description="Timeline of career/study milestones"/>
             <Stepper.Step component="a" href="#achievements" label="Achievements" description="Notable awards"/>
             <Stepper.Step component="a" href="#projects" label="Projects" description="Projects I have been involved in"/>
             <Stepper.Completed/>
           </Stepper>
-        </Container>
+        </Container> */}
 
-        <Title order={2} align="center" mb="lg" id="timeline">Employment/Education</Title>
         <Container size="sm" px="xs">
-          <Timeline active={5} bulletSize={30} lineWidth={2}>
-            <Timeline.Item bullet={<IconSchool size={16} />} title="Bachelor of Information Technology">
-              <Text color="dimmed" size="sm">Topics included: Web design & development, project management, programming in PHP, Java, Python, cybersecurity, risk management, AWS web systems development, artificial intelligence, database management</Text>
-              <Text size="xs" mt={4}>2020 - 2022</Text>
-            </Timeline.Item>
+          <Title order={2} align="center" mb="lg" id="timeline">Employment</Title>
+          <Timeline active={5} bulletSize={30} lineWidth={3} color="gray">
             <Timeline.Item bullet={<IconBuilding size={16} />} title="Technical Assistant at Honeylight Consulting">
               <Text color="dimmed" size="sm">IT technician providing level 1 & 2 support to a range of clients, through face-to-face and remote engagements. Managed firewalls, implemented SSL certificates, provided remote troubleshooting and solution delivery, managed client reports</Text>
               <Text size="xs" mt={4}>May 2022 - Present</Text>
@@ -87,10 +100,6 @@ function App() {
               <Text color="dimmed" size="sm">Coordinated visual media for student club along with a team of executives and designers.</Text>
               <Text size="xs" mt={4}>Oct 2020 - Present</Text>
             </Timeline.Item>
-            <Timeline.Item bullet={<IconSchool size={16} />} title="Diploma of Information Technology">
-              <Text color="dimmed" size="sm">Topics included project management, database management, web design, programming in PHP, Java, Windows systems administration</Text>
-              <Text size="xs" mt={4}>2019 - 2020</Text>
-            </Timeline.Item>
             <Timeline.Item 
             bulletSize={1} 
             bullet={<Avatar size={25} src="https://i.imgur.com/JIgGyNT.png" mt="md"/>} 
@@ -105,6 +114,21 @@ function App() {
               </List>
               <Text color="dimmed" size="sm" mb="xs">Remained as an external contact for technical support for 3 months post-resignation.</Text>
               <Text size="xs" mt={4}>Oct 2018 - Oct 2020</Text>
+            </Timeline.Item>
+          </Timeline>
+        </Container>
+
+        <Space h={50} />
+        <Container size="sm" px="xs">
+          <Title order={2} align="center" mb="lg" id="timeline">Education</Title>
+          <Timeline active={5} bulletSize={1} lineWidth={3} color="gray">
+            <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Bachelor of Information Technology">
+              <Text color="dimmed" size="sm"></Text>
+              <Text size="xs" mt={4}>2020 - 2022</Text>
+            </Timeline.Item>
+            <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Diploma of Information Technology">
+              <Text color="dimmed" size="sm"></Text>
+              <Text size="xs" mt={4}>2018 - 2019</Text>
             </Timeline.Item>
           </Timeline>
         </Container>
@@ -141,6 +165,17 @@ function App() {
             language="GMS2"
             link="https://umconfortable.itch.io/keepo"
             type="personal"
+            images="https://img.itch.zone/aW1hZ2UvMTE2ODMxMS82ODM2NDk5LmdpZg==/original/nHETWG.gif, https://img.itch.zone/aW1hZ2UvMTE2ODMxMS82ODAzMDI0LmdpZg==/original/zjhuBY.gif, https://img.itch.zone/aW1hZ2UvMTE2ODMxMS82ODI0NjMyLmdpZg==/original/85ZX6c.gif"
+            />
+            <ProjectCard
+            title="RMIT Engineering/IT Industry Night"
+            description="Industry Night brought 300+ students face-to-face with over 30 companies to learn more about the tech/engineering industries."
+            fulldescription="RMIT Engineering/IT Industry Night was a joint venture between a collection of tech-related student clubs at RMIT,bringing **300+ students face-to-face with over 30 companies** to learn more about the tech/engineering industries. Through various connections, Females in RMIT Engineering, RMIT Information Security Collective, RMIT CSIT Society, RMIT Society for Women in Information TeCHnology, and Students Association for Sustainable Systems Engineering were able to collect a range of companies including **Commbank, Deloitte, IBM and many more** in one room, with the goal of educating students on industry opportunities. The event was an overwhelming success, and **RMIT's biggest networking event**."
+            image="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F244589149%2F318756900791%2F1%2Foriginal.20220310-010632?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=4034342c76f0dbef8a327a6931d3b3d9"
+            language="Social"
+            link="https://www.eventbrite.com.au/e/industry-night-2022-tickets-269510100967"
+            badgecolour="yellow"
+            images="https://media-exp1.licdn.com/dms/image/C5622AQFeHOH5Q-YW-w/feedshare-shrink_1280/0/1648039003780?e=1663804800&v=beta&t=4ne_gOAI1nObwjLHi_Y1Ia5unkNhgDpPy7Rm8K03bRM"
             />
             <ProjectCard
             title="RMIT Information Security Collective Website"
@@ -151,6 +186,7 @@ function App() {
             link="https://risc.melbourne"
             badgecolour="red"
             type="commission"
+            images="https://i.imgur.com/bkirGNph.jpg"
             />
             <ProjectCard
             title="RMIT InfoTech"
@@ -168,34 +204,7 @@ function App() {
             language="Python"
             type="personal"
             />
-            <ProjectCard
-            title="BuildPalettes"
-            description="A Minecraft Spigot plugin that allows players to manage/share custom block palettes"
-            image="https://libus.xyz/img/spigot.png"
-            language="Java"
-            type="personal"
-            />
-            <ProjectCard
-            title="BlockColours"
-            description="A Minecraft Spigot plugin that allows players to perform operations revolving around the colours of blocks. "
-            image="https://libus.xyz/img/spigot.png"
-            language="Java"
-            type="personal"
-            />
-            <ProjectCard
-            title="SkyCommand"
-            description="A Minecraft Spigot plugin that allows admins to configure commands to be ran when players click the sky. "
-            image="https://libus.xyz/img/spigot.png"
-            language="Java"
-            type="commission"
-            />
-            <ProjectCard
-            title="CustomJoinMessages"
-            description="A Minecraft Spigot plugin that allows users to customise their join/leave messages. Written on request for the Shadow Kingdom Minecraft network."
-            image="https://libus.xyz/img/spigot.png"
-            language="Java"
-            type="commission"
-            />
+            
             
         </Group>
         

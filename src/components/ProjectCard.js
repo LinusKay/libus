@@ -9,7 +9,7 @@ function ProjectCard(props) {
     const image = props.image
     const language = props.language
     const link = props.link
-    let type = props.type
+    const type = props.type
     let badgeColour = props.badgecolour
     if (badgeColour == null) {
         switch(language){
@@ -23,6 +23,7 @@ function ProjectCard(props) {
                 badgeColour = "gray"; break
         }
     }
+    const images = props.images?.split(", ")
 
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
@@ -45,8 +46,13 @@ function ProjectCard(props) {
                     <Text color="dimmed" size="sm">{description}</Text>
                     <Group position="apart">
                         <Group position="left">
-                            <Badge mt="xs" variant="outline" color={badgeColour}>{language}</Badge>
-                            <Badge mt="xs" variant="outline" color="gray">{type}</Badge>
+                            <Badge mt="xs"  color={badgeColour}>{language}</Badge>
+                            {
+                                type == null ?
+                                ''
+                                :
+                                <Badge mt="xs" color="gray">{type}</Badge>
+                            }
                         </Group>
                         <Button radius="xl" variant="outline" color={badgeColour} onClick={() => setOpened(true)}>Learn More</Button>
                     </Group>
@@ -71,9 +77,21 @@ function ProjectCard(props) {
                     <Group position="apart" mt="sm" mb="sm">
                         <Group position="left">
                             <Badge mt="xs" color={badgeColour}>{language}</Badge>
-                            <Badge mt="xs" color="gray">{type}</Badge>
+                            
+                            {
+                                type == null ?
+                                ''
+                                :
+                                <Badge mt="xs" color="gray">{type}</Badge>
+                            }
                         </Group>
-                        <Button radius="xl" variant="outline" color={badgeColour} component="a" href={link}>View Project</Button>
+                            {
+                                link == null ?
+                                ''
+                                :
+                                <Button radius="xl" variant="outline" color={badgeColour} component="a" href={link}>View Project</Button>
+                            }
+                        
                     </Group>
                     
                     {
@@ -82,7 +100,12 @@ function ProjectCard(props) {
                         :
                         <Text><ReactMarkdown>{fulldescription}</ReactMarkdown></Text>
                     }
-                    <Text color="dimmed">Click the button, or the image to go to the project!</Text>
+
+                    {
+                        images?.map((image, index) =>
+                            <Image src={image}/>
+                        )
+                    }
                     
             </Modal>
         </Container>
