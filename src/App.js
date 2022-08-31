@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import './App.css'
 import ProjectCard from './components/ProjectCard'
 import Achievement from './components/Achievement'
+import star from './star-svgrepo-com.svg'
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
     // header={}
     styles={(theme) => ({
       main: { 
-        backgroundColor: theme.colors.gray[0]
+        backgroundColor: theme.colors.dark[8],
+        color: theme.colors.gray[0]
       },
     })}
   >
@@ -29,43 +31,41 @@ function App() {
       <>
       {/* <Header height={60} p="xs">Header content</Header> */}
       <Container size="md" px="xs">
-        <Container size="md" px="xs" mt="md">
+        <Container size="md" px="xs" mt="xl">
         {/* <Card shadow="md" p="xl" mb="xl" radius={150}> */}
         <Group position="center">
           <Avatar 
-            size={200}
-            radius={100}
+            size={300}
+            radius={200}
             src="https://media-exp1.licdn.com/dms/image/C4D03AQFLBqQU2QbQWA/profile-displayphoto-shrink_800_800/0/1639607722290?e=1666224000&v=beta&t=0qK3jv59UPYnULEa2s66UK64Jh4it4sWVQQXzd1luMk"
           />
           </Group>
-            <Title align="center">Linus Kay</Title>
+            <Title align="center" mt="xl">Linus Kay</Title>
             <Text align="center" color="dimmed" size={20} mb="md">Technical Assistant at Honeylight Consulting</Text>
             <Text align="center" color="dimmed">IT Technician with a passion for cybersecurity. Currently Co-President of the RMIT Information Security Collective, alongside completing a Bachelor of Information Technology.</Text>
-            <Center>
-              <Button radius="xl" size="md" m={10} mt="md" p="xs" variant="outline" component="a" href="https://linkedin.com/in/linus-kay"><IconBrandLinkedin/></Button>
-              <Button radius="xl" size="md" m={10} mt="md" color="dark" p="xs" variant="outline" component="a" href="https://github.com/linuskay"><IconBrandGithub/></Button>
-              <Button radius="xl" size="md" m={10} mt="md" color="orange" p="xs" variant="outline" component="a" href="https://instagram.com/linus_kay"><IconBrandInstagram/></Button>
-              
+            <Center mt="xl">
+              <Button radius="xl" size="lg" m={10} mt="md" p="xs" variant="outline" component="a" href="https://linkedin.com/in/linus-kay"><IconBrandLinkedin/></Button>
+              <Button radius="xl" size="lg" m={10} mt="md" color="gray" p="xs" variant="outline" component="a" href="https://github.com/linuskay"><IconBrandGithub/></Button>
+              <Button radius="xl" size="lg" m={10} mt="md" color="orange" p="xs" variant="outline" component="a" href="https://instagram.com/linus_kay"><IconBrandInstagram/></Button>
             </Center>
         </Container>
         <Space h={25} />
       </Container>
       <Container size="100%" p={0}>
         <Container size="md" px="xs" >
-          
+          <img src={star} style={{zIndex: -100, width: 500, position: 'absolute'}}/>
           <Space h="xl"/>
-
           <Container size="sm" px="xs">
             <Title order={2} align="center" mb="lg" id="timeline">Employment</Title>
-            <Timeline active={5} bulletSize={timelineBulletSize} lineWidth={3} color="gray">
-              <Timeline.Item bullet={<IconBuilding size={timelineBulletSize/2} />} title="Technical Assistant at Honeylight Consulting">
+            <Timeline active={5} bulletSize={timelineBulletSize} lineWidth={3} color="orange">
+              <Timeline.Item bullet={<IconBuilding size={timelineBulletSize/2} />} title="Technical Assistant at Honeylight Consulting" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm">IT technician providing level 1 & 2 support to a range of clients, through face-to-face and remote engagements. Managed firewalls, implemented SSL certificates, provided remote troubleshooting and solution delivery, managed client reports</Text>
                 <Text size="xs" mt={4}>May 2022 - Present</Text>
               </Timeline.Item>
               <Timeline.Item 
                 bulletSize={25} 
                 bullet={<Avatar size={timelineBulletSize} radius={timelineBulletSize/2} src="https://media-exp1.licdn.com/dms/image/C4E0BAQEGUc6AHygkyA/company-logo_200_200/0/1614744051680?e=2147483647&v=beta&t=ixcoUQtIu1OAF5BIKyCqoEtTqN2rsLifoI7vDyUbO0E"/>}  
-                title="RMIT Information Security Collective">
+                title="RMIT Information Security Collective" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm">President</Text>
                 <Text size="xs" mt={4}>Oct 2021 - Present</Text>
                 <Text color="dimmed" size="sm">Secretary</Text>
@@ -74,7 +74,7 @@ function App() {
               <Timeline.Item 
                 bulletSize={25} 
                 bullet={<Avatar size={timelineBulletSize} src="https://avatars.githubusercontent.com/u/20478505?s=200&v=4"/>} 
-                title="RMIT Programming Club">
+                title="RMIT Programming Club" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm">Design & Media Lead</Text>
                 <Text color="dimmed" size="sm">Coordinated visual media for student club along with a team of executives and designers.</Text>
                 <Text size="xs" mt={4}>Oct 2020 - Present</Text>
@@ -82,14 +82,14 @@ function App() {
               <Timeline.Item 
               bulletSize={1} 
               bullet={<Avatar size={timelineBulletSize} src="https://i.imgur.com/JIgGyNT.png" mt="md"/>} 
-              title="Orders Officer at Essential Caravans">
+              title="Orders Officer at Essential Caravans" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm" mb="xs">Handled all incoming customer orders from partner companies, communicating with representatives to ensure all customer requests are met. Ordered additional stock and filed paperwork for interstate businesses. In this time trained two employees in adjacent positions.</Text>
                 <Text color="dimmed" size="sm" mb="xs">Additionally, worked as an intermediary and informal business analyst for some time, overseeing the production of an online product ordering system for use by company partners, involving:</Text> 
                 <List size="sm" color="red">
-                    <List.Item> translation of company requirements into workable solutions</List.Item>
-                    <List.Item> direct communication with overseas development bodies</List.Item>
-                    <List.Item> face-to-face and online training of multiple local and external parties, often involving interstate travel</List.Item>
-                    <List.Item> quality analysis to ensure users were provided with a system that was easy to use and navigate</List.Item>
+                    <List.Item style={{color: 'white'}}> translation of company requirements into workable solutions</List.Item>
+                    <List.Item style={{color: 'white'}}> direct communication with overseas development bodies</List.Item>
+                    <List.Item style={{color: 'white'}}> face-to-face and online training of multiple local and external parties, often involving interstate travel</List.Item>
+                    <List.Item style={{color: 'white'}}> quality analysis to ensure users were provided with a system that was easy to use and navigate</List.Item>
                 </List>
                 <Text color="dimmed" size="sm" mb="xs">Remained as an external contact for technical support for 3 months post-resignation.</Text>
                 <Text size="xs" mt={4}>Oct 2018 - Oct 2020</Text>
@@ -97,22 +97,22 @@ function App() {
             </Timeline>
           </Container>
 
-          <Space h={50} />
+          <Space h={100} />
           <Container size="xs" px="xs">
             <Title order={2} align="center" mb="lg" id="timeline">Education</Title>
             <Timeline active={5} bulletSize={1} lineWidth={3} color="gray">
-              <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Bachelor of Information Technology">
+              <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Bachelor of Information Technology" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm"></Text>
                 <Text size="xs" mt={4}>2020 - 2022</Text>
               </Timeline.Item>
-              <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Diploma of Information Technology">
+              <Timeline.Item bullet={<Avatar size={30} src="https://i.imgur.com/Yb5Xz6t.png" mt="lg"/>} title="Diploma of Information Technology" style={{color: 'white'}}>
                 <Text color="dimmed" size="sm"></Text>
                 <Text size="xs" mt={4}>2018 - 2019</Text>
               </Timeline.Item>
             </Timeline>
           </Container>
 
-          <Space h="lg" />
+          <Space h={100} />
 
           <Title order={2} align="center" id="achievements">Achievements</Title>
           <Group position="center">
@@ -134,6 +134,7 @@ function App() {
             />
           </Group>  
 
+          <Space h={100}/>
           <Title order={2} align="center" mb="lg" id="projects">Projects</Title>
           <Group position="center">
             <ProjectCard
